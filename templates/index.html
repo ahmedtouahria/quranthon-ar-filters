@@ -1,0 +1,59 @@
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+      }
+      .example-container {
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      .options-panel {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 2;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="example-container">
+      <div class="options-panel">
+      </div>
+      <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <a-assets>
+        </a-assets>
+        <a-assets>
+          <img
+            id="logo"
+            src="assets/quran_images/2_101.jpg"
+            />
+        </a-assets>
+        <a-camera active="false" position="0 0 0"></a-camera>
+	<!-- head occluder -->
+
+        <a-entity mindar-face-target="anchorIndex: 168">
+          <a-entity mindar-image-target="targetIndex: 0">
+            <a-image
+              width="20"
+              height="4.46"
+               scale="0.1 0.1 0.1"
+               position="0 0.5 0"
+               src="#logo"
+             >
+             </a-image>
+          </a-entity>
+        </a-entity>
+      </a-scene>
+    </div>
+
+  </body>
+</html>
