@@ -1,9 +1,10 @@
 
 <html>
+  {% load static %}
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+    <script src="{% static "js/aframe.min.js" %} "></script>
+    <script src="{% static "js/mindar-face-aframe.prod.js" %}"></script>
 
     <style>
       body {
@@ -34,7 +35,7 @@
         <a-assets>
           <img
             id="logo"
-            src="assets/quran_images/2_101.jpg"
+            src="{% static "quran_images/2_101.jpg" %}"
             />
         </a-assets>
         <a-camera active="false" position="0 0 0"></a-camera>
