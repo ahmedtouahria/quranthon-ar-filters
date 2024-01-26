@@ -3,6 +3,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+quranthon_ar/__pycache__
 # SQLite database files
 db.sqlite3
 # Media files
