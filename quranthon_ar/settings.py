@@ -111,7 +111,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "quranthon_ar/static"),
 ]
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
