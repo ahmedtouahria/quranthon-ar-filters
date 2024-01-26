@@ -29,13 +29,39 @@
     <div class="example-container">
       <div class="options-panel">
       </div>
-      <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-scene
+       mindar-face embedded 
+       color-space="sRGB" 
+       renderer="colorManagement: true, physicallyCorrectLights" 
+       vr-mode-ui="enabled: false" 
+       device-orientation-permission-ui="enabled: false"
+       id="scene"
+
+       >
         <a-assets>
         </a-assets>
         <a-assets>
           <img
-            id="logo"
+            id="aya1"
             src="{% static "quran_images/1.png" %}"
+            />
+        </a-assets>
+        <a-assets>
+          <img
+            id="aya2"
+            src="{% static "quran_images/2.png" %}"
+            />
+        </a-assets>
+        <a-assets>
+          <img
+            id="aya3"
+            src="{% static "quran_images/3.png" %}"
+            />
+        </a-assets>
+        <a-assets>
+          <img
+            id="aya4"
+            src="{% static "quran_images/4.png" %}"
             />
         </a-assets>
         <a-camera active="false" position="0 0 0"></a-camera>
@@ -45,16 +71,83 @@
           <a-entity mindar-image-target="targetIndex: 0">
             <a-image
               width="20"
+              class="entity"
               height="4.46"
                scale="0.1 0.1 0.1"
                position="0 0.5 0"
-               src="#logo"
+               src="#aya1"
+             >
+             </a-image>
+          </a-entity>
+          <a-entity mindar-image-target="targetIndex: 1">
+            <a-image
+              width="20"
+              class="entity"
+              height="4.46"
+               scale="0.1 0.1 0.1"
+               position="0 0.5 0"
+               src="#aya2"
+             >
+             </a-image>
+          </a-entity>
+          <a-entity mindar-image-target="targetIndex: 2">
+            <a-image
+              width="20"
+              class="entity"
+              height="4.46"
+               scale="0.1 0.1 0.1"
+               position="0 0.5 0"
+               src="#aya3"
+             >
+             </a-image>
+          </a-entity>
+          <a-entity mindar-image-target="targetIndex: 3">
+            <a-image
+              width="20"
+              class="entity"
+              height="4.46"
+               scale="0.1 0.1 0.1"
+               position="0 0.5 0"
+               src="#aya4"
              >
              </a-image>
           </a-entity>
         </a-entity>
       </a-scene>
     </div>
-
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const sceneEl = document.querySelector("#scene");
+        sceneEl.addEventListener("arReady", (event) => {
+          const entityClasses = document.querySelectorAll('.entity');
+          const entityClassesArray = Array.from(entityClasses);
+          console.log(entityClassesArray)
+          let currentEntityIndex = 0;
+    
+          // Function to toggle visibility
+          function toggleVisibility() {
+            // Hide all entities
+            entityClassesArray.forEach((entity) => {
+              entity.setAttribute("visible", false);
+            });
+    
+            // Show the current entity
+            entityClassesArray[currentEntityIndex].setAttribute("visible", true);
+    
+            // Move to the next entity (wrap around to the beginning if at the end)
+            currentEntityIndex = (currentEntityIndex + 1) % entityClassesArray.length;
+          }
+    
+          // Set interval to toggle visibility every second
+          const intervalId = setInterval(toggleVisibility, 200);
+    
+          // Optionally, you can stop the interval after a certain duration (e.g., 10 seconds)
+          setTimeout(() => {
+            clearInterval(intervalId);
+          }, 10000); // Stop after 10 seconds
+        });
+      });
+    </script>
+    
   </body>
 </html>
