@@ -38,80 +38,31 @@
        id="scene"
 
        >
-        <a-assets>
-        </a-assets>
-        <a-assets>
-          <img
-            id="aya1"
-            src="{% static "quran_images/1.png" %}"
-            />
-        </a-assets>
+       {% for aya in ayahs %}
         <a-assets>
           <img
-            id="aya2"
-            src="{% static "quran_images/2.png" %}"
+            id="aya{{ aya.id }}"
+            src="{{aya.image.url}}"
             />
         </a-assets>
-        <a-assets>
-          <img
-            id="aya3"
-            src="{% static "quran_images/3.png" %}"
-            />
-        </a-assets>
-        <a-assets>
-          <img
-            id="aya4"
-            src="{% static "quran_images/4.png" %}"
-            />
-        </a-assets>
+        {% endfor %}
         <a-camera active="false" position="0 0 0"></a-camera>
 	<!-- head occluder -->
 
         <a-entity mindar-face-target="anchorIndex: 168">
-          <a-entity mindar-image-target="targetIndex: 0">
+          {% for aya in ayahs %}
+          <a-entity mindar-image-target="targetIndex: {{aya.id}}">
             <a-image
               width="20"
               class="entity"
               height="4.46"
                scale="0.1 0.1 0.1"
                position="0 0.5 0"
-               src="#aya1"
+               src="#aya{{aya.id}}"
              >
              </a-image>
           </a-entity>
-          <a-entity mindar-image-target="targetIndex: 1">
-            <a-image
-              width="20"
-              class="entity"
-              height="4.46"
-               scale="0.1 0.1 0.1"
-               position="0 0.5 0"
-               src="#aya2"
-             >
-             </a-image>
-          </a-entity>
-          <a-entity mindar-image-target="targetIndex: 2">
-            <a-image
-              width="20"
-              class="entity"
-              height="4.46"
-               scale="0.1 0.1 0.1"
-               position="0 0.5 0"
-               src="#aya3"
-             >
-             </a-image>
-          </a-entity>
-          <a-entity mindar-image-target="targetIndex: 3">
-            <a-image
-              width="20"
-              class="entity"
-              height="4.46"
-               scale="0.1 0.1 0.1"
-               position="0 0.5 0"
-               src="#aya4"
-             >
-             </a-image>
-          </a-entity>
+          {% endfor %}
         </a-entity>
       </a-scene>
     </div>
